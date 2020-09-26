@@ -7,6 +7,7 @@ public class PerfectCurryProgram {
     { 
      
         int i; 
+        int k=0;
       
         int preSum = 0; 
        
