@@ -1,43 +1,63 @@
-static string perfectCurry(){
-
-
-int[] arr=[2,7,5,2,5];
-int sum=0;
-StringBuilder str=new StringBuilder();
-int[] visited_ele=[0,0,0];
-for(int i=0;i<arr.length;i++){
-   sum+=arr[i];
-}
-if(sum%3!=0){
-  int j=1;
-  int k=0;
-  int div_Sum=sum/3;
-  curr=arr[0];
-  str.append('P');
- while(j<arr.length){
-   curr=curr+arr[j];
-    if(curr==div_Sum){
-      visited_ele[k]=1;
-      if(k==3){
-        for(int i=0;i<3;i++){
-          if(visited_ele[i]!=1){
-            str.append((char)('P'+k));
-            return str.toString();
-          }
+import java.io.*; 
+import java.util.*; 
+  
+public class PerfectCurryProgram { 
+  static StringBuilder str=new StringBuilder();
+    static int PerfectCurry(int []arr, int n) 
+    { 
+     
+        int i; 
+      
+        int preSum = 0; 
+       
+        int ind1 = -1, ind2 = -1; 
+    
+        int S; 
+    
+        S = arr[0]; 
+        for (i = 1; i < n; i++)  
+            S += arr[i]; 
+      
+        if(S % 3 != 0) 
+            return 0; 
+          
+        int S1 = S / 3; 
+        int S2 = 2 * S1; 
+      
+        for (i = 0; i < n; i++) 
+        { 
+            preSum += arr[i]; 
+            
+            if (preSum == S1 && ind1 == -1) {
+                index=i;
+                str.append((char)('P'+k%3));
+                k++;
+            }
+              
+            else if(preSum == S2 && ind1 != -1) 
+            { 
+                ind2 = i;
+                str.append((char)('P'+k%3));
+                k++; 
+                break; 
+            } 
         }
-      }
-      str.append((char)('P'+ k));
-      curr=0;
-    }else if(curr<div_Sum){
-      j++;
-    }else{
-      j++;
-      k++;
-    } 
- }
+        if (ind1 != -1 && ind2 != -1) 
+        {
+            return 1; 
+        } 
 
- return str.toString();
-}else{
-  return 'no luck'
-}
-}
+        return 0; 
+    } 
+    
+    public static void main(String args[]) 
+    { 
+        int []arr = { 3, 7, 5, 2, 4 }; 
+        int n = arr.length; 
+        if (PerfectCurry(arr, n) == 0)  
+            return 'no luck';
+            else{
+              return str.toString();
+            }
+    } 
+} 
