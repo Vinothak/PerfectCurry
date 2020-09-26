@@ -1,0 +1,43 @@
+static string perfectCurry(){
+
+
+int[] arr=[2,7,5,2,5];
+int sum=0;
+StringBuilder str=new StringBuilder();
+int[] visited_ele=[0,0,0];
+for(int i=0;i<arr.length;i++){
+   sum+=arr[i];
+}
+if(sum%3!=0){
+  int j=1;
+  int k=0;
+  int div_Sum=sum/3;
+  curr=arr[0];
+  str.append('P');
+ while(j<arr.length){
+   curr=curr+arr[j];
+    if(curr==div_Sum){
+      visited_ele[k]=1;
+      if(k==3){
+        for(int i=0;i<3;i++){
+          if(visited_ele[i]!=1){
+            str.append((char)('P'+k));
+            return str.toString();
+          }
+        }
+      }
+      str.append((char)('P'+ k));
+      curr=0;
+    }else if(curr<div_Sum){
+      j++;
+    }else{
+      j++;
+      k++;
+    } 
+ }
+
+ return str.toString();
+}else{
+  return 'no luck'
+}
+}
